@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+
+    <div class="container">
+
+        <img class="mb-4" th:src="@{/img/logo.png}" alt="" width="72" height="57">
+
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarButtonsExample"
+                aria-controls="navbarButtonsExample"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+            </ul>
+
+
+            <div class="d-flex align-items-center">
+                <a th:href="@{/}">
+                    <button type="button" class="btn btn-primary me-3">
+                        Sign Out
+                    </button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</nav>
+<!-- Navbar -->
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Appointment ID</th>
+        <th scope="col">Patient Name</th>
+        <th scope="col">Doctor ID</th>
+        <th scope="col">Appointment Date</th>
+        <th scope="col">Appointment Time</th>
+        <th scope="col">Surgery Name</th>
+        <th scope="col">Result Date</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="appointment: ${appointmentList}">
+        <th scope="row" th:text="${appointment.appID}"></th>
+        <td>
+            <a th:href="@{/account/info(param1=  ${appointment.patientID},param2 = ${appointment.doctorID})}">
+                <button type="button" class="btn btn-info" th:text="${appointment.patient_name}">
+                </button>
+            </a>
+        </td>
+        <td th:text="${appointment.doctorID}"></td>
+        <td th:text="${appointment.appDate}"></td>
+        <td th:text="${appointment.hour}"></td>
+        <td th:text="${appointment.surgery_name}"></td>
+        <td th:text="${appointment.rezultDate}">
+        <td>
+        <a th:href="@{/account/update(param1=  ${appointment.appID},param2 = ${appointment.doctorID}, param3= ${appointment.patientID})}">
+            <button type="button" class="btn btn-primary me-3">
+                Update
+            </button>
+        </a>
+        </td>
+        <td> <a th:href="@{/account/delete(param1=  ${appointment.appID},param2 = ${appointment.doctorID})}">
+            <button  type="button" class="btn btn-primary me-3">
+                Delete
+            </button>
+        </a></td>
+    </tr>
+
+    </tbody>
+</table>
+
+</body>
+</html>

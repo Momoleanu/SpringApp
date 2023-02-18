@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+    <title>Signin</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        h6{
+            color: red;
+        }
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+    <link th:href="@{/css/signin.css}" rel="stylesheet"/>
+</head>
+<body class="text-center">
+
+<main class="form-signin">
+    <form th:action="@{/dosignup}" method="post">
+
+        <img class="mb-4" th:src="@{/img/logo.png}" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+
+        <div class="form-floating">
+            <input type="text"  th:field="*{doctor.name}" th:required="required" class="form-control" id="floatingName" placeholder="First Name & Last Name">
+            <label for="floatingName">First & Last Name</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingEmail" placeholder="name@example.com" th:field="*{user.email}" th:required="required">
+            <label for="floatingEmail">Email address</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" th:field="*{user.password}" th:required="required">
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="form-floating">
+            <br>
+            <br>
+            <input type="date" th:field="*{doctor.hireDate}" th:required="required" id="start" name="trip-start"
+                   value="2023-01-01"
+                   min="1975-01-01" max="2023-04-01">
+
+           <label th:align="center"> Enter your hire date:  </label>
+        </div>
+
+        <br>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+        <br>
+        <br>
+        <h6 th:text="${flagName} ? ' ' : 'We did not find a doctor with the name or hire date specified. Please contact the system administrator! ' "/>
+        <h6 th:text="${flagEmail} ? ' ' : 'Please enter a valid email! ' "/>
+        <p class="mt-5 mb-3 text-muted">&copy; Dumitru Andrei & Holban Mihnea - Proiect BD 2022</p>
+    </form>
+</main>
+
+
+
+</body>
+</html>

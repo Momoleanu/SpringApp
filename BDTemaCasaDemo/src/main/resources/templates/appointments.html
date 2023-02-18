@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+
+  <title>Signin</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    h6{
+      color: red;
+    }
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+  </style>
+
+  <link th:href="@{/css/signin.css}" rel="stylesheet"/>
+</head>
+<body class="text-center">
+
+<main class="form-signin">
+  <form th:action="@{/doappointments}" method="post">
+
+    <img class="mb-4" th:src="@{/img/logo.png}" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Create appointment</h1>
+
+    <div class="form-floating">
+      <input type="text"  th:field="*{patient.name}" th:required="required" class="form-control" id="floatingName" placeholder="First Name & Last Name">
+      <label for="floatingName">First & Last Name</label>
+    </div>
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" th:field="*{patient.email}" th:required="required">
+      <label for="floatingEmail">Email address</label>
+    </div>
+
+    <div class="form-floating">
+      <br>
+      <br>
+      <input type="date" th:field="*{appointment.appDate}" th:required="required" id="start" name="trip-start"
+             value="2023-01-01"
+             min="2023-01-04" max="2024-01-01">
+
+      <label th:align="center"> Enter your appointment date:  </label>
+    </div>
+
+    <div class = "form-floating">
+      <br><br>
+      <select id="appTime" th:field="*{appointment.hour}">
+        <option th:each="hour: ${hourList}" th:text="${hour}" th:value=" ${hour}">
+      </select>
+      <label>Select Appointment Time: </label>
+    </div>
+
+    <div class = "form-floating">
+      <br><br>
+      <select id="appDoctor" th:field="*{appointment.doctorID}">
+        <option th:each="doctor: ${doctorList}"  th:text="${doctor.name}" th:value=" ${doctor.doctorID}">
+      </select>
+      <label>Select your doctor: </label>
+    </div>
+
+    <br>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Confirm</button>
+    <br>
+    <br>
+    <h6 th:text="${flag} ? ' ' : 'Please select another appointment time' "/>
+    <h6 th:text="${nameFlag} ? ' ' : 'Please enter a valid name' "/>
+    <p class="mt-5 mb-3 text-muted">&copy; Dumitru Andrei & Holban Mihnea - Proiect BD 2022</p>
+  </form>
+</main>
+</body>
+</html>

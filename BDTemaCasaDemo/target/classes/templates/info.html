@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+</head>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Medical Problems</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="problem:${medicalStringList}">
+        <td th:text="${problem}"></td>
+    </tr>
+
+    </tbody>
+</table>
+<h5 th:text="'Total Cost of surgery: '+ ${totalPrice}+'$'"></h5>
+<form th:action="@{'/account/infoPost/'+${doctor}}" method="post">
+
+<a ><button type="submit" class="btn btn-primary">Return</button></a>
+</form>
+</body>
+</html>
